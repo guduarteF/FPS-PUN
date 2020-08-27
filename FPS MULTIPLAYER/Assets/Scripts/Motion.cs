@@ -7,7 +7,7 @@ public class Motion : MonoBehaviourPunCallbacks
 {
     public float speed;
     private Rigidbody rig;
-    public float sprintModifier;
+    public float sprintModifier = 2;
     public Camera normalCam;
     private float baseFOV;
     private float sprintFOVModifier = 1.5f;
@@ -19,10 +19,22 @@ public class Motion : MonoBehaviourPunCallbacks
     private float movementCounter;
     private float idleCounter;
     private Vector3 targetWeaponBobPosition;
+    public GameObject cameraParent;
+    public float max_health;
+    private float current_health;
     private void Start()
     {
+        current_health = max_health;
+        cameraParent.SetActive(photonView.IsMine);
+        if (!photonView.IsMine) gameObject.layer = 9;
         baseFOV = normalCam.fieldOfView;
-        Camera.main.enabled = false;
+        if (Camera.main) Camera.main.enabled = false;
+      
+
+      
+        
+       
+      // Camera.main.enabled = false;
         rig = GetComponent<Rigidbody>();
         weaponParentOrigin = weaponParent.localPosition;
     }
@@ -61,7 +73,7 @@ public class Motion : MonoBehaviourPunCallbacks
         {
             HeadBob(movementCounter, 0.035f, 0.035f);
             movementCounter += Time.deltaTime * 3f;
-            weaponParent.localPosition = Vector3.Lerp(weaponParent.localPosition, targetWeaponBobPosition, Time.deltaTime * 8f);
+            weaponParent.localPosition = Vector3.Lerp(weaponParent.localPosition, targetWeaponBobPosition, Time.deltaTime * 6f);
         }
         else
         {
@@ -83,7 +95,7 @@ public class Motion : MonoBehaviourPunCallbacks
         bool jump = Input.GetKeyDown(KeyCode.Space);
 
         // States
-        bool isGrounded = Physics.Raycast(groundDetector.position, Vector3.down, 0.5f, ground);
+        bool isGrounded = Physics.Raycast(groundDetector.position, Vector3.down, 0.1f, ground);
         bool isJumping = jump && isGrounded;
         bool isSprinting = sprint && t_vmove > 0 && isGrounded && !isJumping;
 
@@ -92,10 +104,15 @@ public class Motion : MonoBehaviourPunCallbacks
         t_direction.Normalize();
 
         float t_adjustedSpeed = speed;
-        if (isSprinting) t_adjustedSpeed *= sprintModifier;
+        if (isSprinting)
+        {
+            t_adjustedSpeed *= sprintModifier;
+        }
         Vector3 t_targetVelocity = transform.TransformDirection(t_direction) * t_adjustedSpeed * Time.deltaTime;
         t_targetVelocity.y = rig.velocity.y;
-        rig.velocity = t_targetVelocity;
+         rig.velocity = t_targetVelocity;
+
+       
 
        
 
@@ -113,5 +130,21 @@ public class Motion : MonoBehaviourPunCallbacks
     void HeadBob (float p_z , float p_x_intensity , float p_y_intensity)
     {
         targetWeaponBobPosition = weaponParentOrigin + new Vector3(Mathf.Cos(p_z) * p_x_intensity, Mathf.Sin(p_z * 2) * p_y_intensity, 0);
+    }
+
+    [PunRPC]
+    public void TakeDamage(int p_damage)
+    {
+        if (photonView.IsMine)
+        {
+            current_health = p_damage;
+            Debug.Log(current_health);
+
+            if(current_health <= 0)
+            {
+                Debug.Log("YOU DIED");
+            }
+        }
+        
     }
 }

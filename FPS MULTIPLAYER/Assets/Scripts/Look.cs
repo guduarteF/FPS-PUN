@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Look : MonoBehaviour
+public class Look : MonoBehaviourPunCallbacks
 {
     public static bool cursorLocked = true;
     public Transform player;
@@ -20,6 +21,7 @@ public class Look : MonoBehaviour
    
     void Update()
     {
+        if (!photonView.IsMine) return;
         SetY();
         SetX();
         UpdateCursorLock();

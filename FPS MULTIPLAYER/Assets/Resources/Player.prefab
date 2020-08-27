@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3682673689639770604}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundDetect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,13 +41,13 @@ GameObject:
   - component: {fileID: 3682673690010844785}
   - component: {fileID: 3682673690010844787}
   - component: {fileID: 3682673690010844786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Normal Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3682673690010844785
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,8 @@ GameObject:
   - component: {fileID: 3682673690337617554}
   - component: {fileID: 3682673690337617581}
   - component: {fileID: -8345535871355371042}
-  m_Layer: 0
+  - component: {fileID: 4287470550478689870}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,6 +271,8 @@ MonoBehaviour:
     m_Bits: 256
   groundDetector: {fileID: 3682673689639770604}
   weaponParent: {fileID: 3682673691090698625}
+  cameraParent: {fileID: 3682673690010844784}
+  max_health: 1000
 --- !u!114 &3682673690337617581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +292,7 @@ MonoBehaviour:
     type: 3}
   canBeShot:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 769
 --- !u!114 &-8345535871355371042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,13 +308,29 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  observableSearch: 2
+  observableSearch: 0
   Synchronization: 2
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 4287470550478689870}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4287470550478689870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682673690337617557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &3682673691090698624
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3682673691090698625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,7 +372,7 @@ GameObject:
   - component: {fileID: 3682673691345629761}
   - component: {fileID: 3682673691345629788}
   - component: {fileID: 3682673691345629763}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
