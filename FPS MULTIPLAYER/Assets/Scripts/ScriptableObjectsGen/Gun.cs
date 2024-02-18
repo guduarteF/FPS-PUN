@@ -1,30 +1,37 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New Gun", menuName ="Gun")]
+[CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
 public class Gun : ScriptableObject
 {
-    public string g_name;
+    public string name;
     public int damage;
+    public int ammo;
+    public int clipsize;
+    public int burst; // 0 semi | 1 auto | 2+ burst fire
+    public int pellets;
     public float firerate;
     public float bloom;
     public float recoil;
     public float kickback;
     public float aimSpeed;
-    public GameObject prefab;
-    public int ammo;
-    public int clipsize;
-    private int clip; //current clip
-    private int stash; //current ammo
     public float reload;
-    public int burst; //0 semi / 1 auto / 2+ burst
+    [Range(0, 1)] public float mainFOV; 
+    [Range(0, 1)] public float weaponFOV;
+    public GameObject prefab;
+    public bool recovery;
+    
+
+    private int stash; //current ammo
+    private int clip;  //current clip
 
     public void Initialize()
     {
         stash = ammo;
         clip = clipsize;
     }
+
     public bool FireBullet()
     {
         if (clip > 0)
@@ -42,8 +49,7 @@ public class Gun : ScriptableObject
     {
         stash += clip;
         clip = Mathf.Min(clipsize, stash);
-        stash -= clip; 
-        
+        stash -= clip;
     }
 
     public int GetStash()
@@ -55,4 +61,7 @@ public class Gun : ScriptableObject
     {
         return clip;
     }
+
+     
+
 }
