@@ -269,7 +269,7 @@ public class Motion : MonoBehaviourPunCallbacks, IPunObservable
             }
 
             // anim state      
-            #region AnimaÃ§Ã£o 
+            #region Animação 
 
             if (usingPistol)
             {
@@ -592,7 +592,7 @@ public class Motion : MonoBehaviourPunCallbacks, IPunObservable
 
         //if (!isdead)
         //{
-        //    // pegar o script de animaÃ§Ã£o da arma atual equipada
+        //    // pegar o script de animação da arma atual equipada
             
         //    if (gameObject.transform.Find("Weapon").GetChild(0).gameObject != null)
         //    {
