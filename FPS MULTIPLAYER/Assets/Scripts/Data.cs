@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO; // acessar arquivos , deletar arquivos , modificiar arquivos do sistema
-using System.Runtime.Serialization.Formatters.Binary; // permite serializar e deserializar as classes em arquivos em tempo de execuÃ§Ã£o
+using System.Runtime.Serialization.Formatters.Binary; // permite serializar e deserializar as classes em arquivos em tempo de execução
 
 public class Data : MonoBehaviour
 {

@@ -211,7 +211,7 @@ public class Weapon : MonoBehaviourPunCallbacks
                     }
                     else if (currentIndex == 28)
                     {
-                        // lan√ßa granada
+                        // lanÁa granada
 
                         if (loadout[currentIndex].burst != 1)
                         {
@@ -797,7 +797,7 @@ public class Weapon : MonoBehaviourPunCallbacks
         for (int i = 0; i < Mathf.Max(1, currentGunData.pellets); i++)
         {
            
-            // Instanciar  proj√©til granada
+            // Instanciar  projÈtil granada
             GameObject granade = Instantiate(p_granade, spawn_granade.position, spawn_granade.rotation);
             if(photonView.IsMine)
             {
@@ -808,13 +808,13 @@ public class Weapon : MonoBehaviourPunCallbacks
                 granade.layer = 20;
             }
 
-            // Lan√ßar Projetil
+            // LanÁar Projetil
             granade.GetComponent<Rigidbody>().AddForce(spawn_granade.forward * 15 ,ForceMode.Impulse);
 
-            //Efeito da Explos√£o 
+            //Efeito da Explos„o 
             StartCoroutine(ExplosionEffect(granade));
 
-            //Destruir proj√©til
+            //Destruir projÈtil
             Destroy(granade, 3f);
 
            

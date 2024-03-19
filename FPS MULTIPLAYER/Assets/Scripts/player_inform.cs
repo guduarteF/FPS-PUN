@@ -21,7 +21,7 @@ public class player_inform : MonoBehaviourPunCallbacks
         //Debug.Log("Qtd de players: " + m.playerInfo.Count);
 
         //Id[0] = GameObject.Find("Player(Clone)").gameObject.GetComponent<PhotonView>().ViewID;
-        //Debug.Log("Meu id Ã© : " + Id);
+        //Debug.Log("Meu id é : " + Id);
         //foreach (PlayerInfo a in m.playerInfo)
         //{
         //    Debug.Log(m.playerInfo[0].kills);
@@ -29,7 +29,7 @@ public class player_inform : MonoBehaviourPunCallbacks
 
         //foreach (PlayerInfo a in m.playerInfo)
         //{
-        //    Debug.Log("meu ID Ã© : " + a.actor);
+        //    Debug.Log("meu ID é : " + a.actor);
         //}
 
         //StartCoroutine(delay());
@@ -61,7 +61,7 @@ public class player_inform : MonoBehaviourPunCallbacks
             {
                
                 players[i] = GameObject.Find("Player(Clone)");
-                Debug.Log("Player: " + players[i] + "Na posiÃ§Ã£o : " + i + "Id = " + players[i].GetComponent<Motion>().playerProfile.username);
+                Debug.Log("Player: " + players[i] + "Na posição : " + i + "Id = " + players[i].GetComponent<Motion>().playerProfile.username);
 
             }
             i++;
